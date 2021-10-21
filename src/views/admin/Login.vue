@@ -17,6 +17,7 @@
             name="email"
             type="email"
             placeholder="Email"
+            required
             class="
               w-full
               px-3
@@ -142,6 +143,7 @@
   import { ref } from 'vue'
   import { useStore } from 'vuex'
   import { useRouter } from 'vue-router'
+  import { auth } from '@/api/firebase'
 
   import Header from '@/components/Header.vue'
   import GithubLink from '@/components/GithubLink.vue'
@@ -153,11 +155,15 @@
   const password = ref('')
   const isShowPassword = ref(false)
 
+  // Add login errors & validation
   async function loginAdmin() {
+    // Fix need to double click to login
     await store.dispatch('loginAdmin', {
       email: email.value,
       password: password.value,
     })
-    router.push({ name: 'Dashboard' })
+    if (auth.currentUser) {
+      router.push({ name: 'Dashboard' })
+    }
   }
 </script>

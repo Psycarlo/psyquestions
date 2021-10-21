@@ -1,7 +1,7 @@
 <template>
   <a
     class="flex space-x-2 hover:text-primary"
-    href="https://github.com/Psycarlo"
+    href="https://github.com/Psycarlo/psyquestions"
     target="_blank"
   >
     <svg

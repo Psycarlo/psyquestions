@@ -3,9 +3,9 @@
     <Header />
     <section class="flex flex-col space-y-8 justify-center items-center">
       <h1 class="text-6xl font-bold text-center pb-12">
-        Enter your <span class="text-primary">username</span>
+        Welcome to <span class="text-primary">psyquestions!</span>
       </h1>
-      <p class="text-light font-bold">The username is optional</p>
+      <p class="text-light font-bold">Leave the username field blank to play as anonymous</p>
       <!--Add prevent default-->
       <form class="w-3/4 max-w-md" @submit.prevent="onSubmit">
         <div class="flex items-center justify-center">

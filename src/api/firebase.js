@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import {
   getFirestore,
   collection,
@@ -8,6 +8,7 @@ import {
   getDocs,
   writeBatch,
   doc,
+  setDoc,
   arrayUnion,
 } from 'firebase/firestore'
 
@@ -70,6 +71,27 @@ export const insertResults = async (results, username) => {
   return true
 }
 
+export const insertQuestion = async (
+  text,
+  green,
+  red,
+  tooltip,
+  bias,
+  number
+) => {
+  await setDoc(doc(db, `questions-${SEASON}`, number), {
+    bias: bias,
+    green: green,
+    red: red,
+    text: text,
+    tooltip: tooltip,
+  })
+  await setDoc(doc(db, `results-${SEASON}`, number), {
+    'green-votes': [],
+    'red-votes': []
+  })
+}
+
 export const login = async (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -80,4 +102,14 @@ export const login = async (email, password) => {
       return null
     })
   return null
+}
+
+export const logout = async () => {
+  signOut(auth)
+    .then(() => {
+      console.log('sign out')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }

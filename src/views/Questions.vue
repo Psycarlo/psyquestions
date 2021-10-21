@@ -30,7 +30,7 @@
           text-center
         "
       >
-        <span class="max-w-3xl">{{ currentQuestionText }}</span>
+        <span class="max-w-4xl leading-relaxed">{{ currentQuestionText }}</span>
         <div class="text-primary has-tooltip">
           <span
             class="

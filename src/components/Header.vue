@@ -12,7 +12,7 @@
       <div
         class="flex justify-center items-center font-bold invisible sm:visible"
       >
-        <p>Season 1</p>
+        <p @click="seasonClick">Season 1</p>
       </div>
     </nav>
   </header>
@@ -25,5 +25,9 @@
 
   function headerClick() {
     router.push({ name: 'Landing' })
+  }
+
+  function seasonClick() {
+    router.push({ name: 'Login' })
   }
 </script>

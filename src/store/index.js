@@ -1,5 +1,11 @@
 import { createStore } from 'vuex'
-import { getQuestions, insertResults, login } from '@/api/firebase'
+import {
+  getQuestions,
+  insertResults,
+  insertQuestion,
+  login,
+  logout,
+} from '@/api/firebase'
 
 const state = () => ({
   username: null,
@@ -43,8 +49,20 @@ const actions = {
       commit('setResultsPosted', true)
     )
   },
+  addQuestion({ commit }, { text, green, red, tooltip, bias, number }) {
+    return insertQuestion(text, green, red, tooltip, bias, number)
+  },
   loginAdmin({ commit }, { email, password }) {
-    return login(email, password).then(() => commit('setAdminLogged', true))
+    return login(email, password).then((res) => {
+      if (!res) {
+        commit('setAdminLogged', false)
+      } else {
+        commit('setAdminLogged', true)
+      }
+    })
+  },
+  logoutAdmin({ commit }) {
+    return logout()
   },
 }
 
